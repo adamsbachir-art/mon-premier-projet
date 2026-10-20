@@ -6,20 +6,22 @@
   <title>Alex — Portfolio</title>
   <style>
     :root {
-      --bg: #0d1117;
-      --surface: #161b22;
-      --border: #30363d;
-      --text: #e6edf3;
-      --muted: #8b949e;
-      --accent: #7c5cff;
-      --accent-2: #22d3ee;
+      --blue-900: #0b2a5b;
+      --blue-700: #1d4ed8;
+      --blue-500: #3b82f6;
+      --blue-100: #dbeafe;
+      --blue-50: #eff6ff;
+      --white: #ffffff;
+      --text: #0f1e3d;
+      --muted: #5b6b8a;
+      --border: #cfe0fb;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-      background: var(--bg);
+      background: var(--blue-50);
       color: var(--text);
       line-height: 1.6;
       min-height: 100vh;
@@ -28,58 +30,63 @@
     .container {
       max-width: 960px;
       margin: 0 auto;
-      padding: 64px 16px;
+      padding: 0 16px;
     }
 
-    /* En-tête */
+    /* Bandeau d'en-tête */
+    .hero {
+      background: linear-gradient(135deg, var(--blue-900), var(--blue-700));
+      color: var(--white);
+      padding: 72px 0 64px;
+    }
+
     header {
       display: flex;
       align-items: center;
       gap: 24px;
-      margin-bottom: 64px;
-      flex-wrap: wrap;
+      margin-bottom: 32px;
     }
 
     .avatar {
       width: 96px;
       height: 96px;
       border-radius: 50%;
-      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      background: var(--white);
+      color: var(--blue-700);
       display: grid;
       place-items: center;
       font-size: 2.5rem;
       font-weight: 700;
-      color: #fff;
       flex-shrink: 0;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
     }
 
     h1 {
       font-size: clamp(2rem, 6vw, 3rem);
       line-height: 1.1;
-      background: linear-gradient(90deg, var(--text), var(--accent-2));
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
     }
 
     .role {
-      color: var(--accent-2);
+      color: var(--blue-100);
       font-weight: 500;
       margin-top: 4px;
     }
 
-    /* Bio */
     .bio {
       font-size: 1.1rem;
-      color: var(--muted);
+      color: var(--blue-100);
       max-width: 640px;
-      margin-bottom: 64px;
     }
 
-    .bio strong { color: var(--text); }
+    .bio strong { color: var(--white); }
+
+    main.container { padding-top: 64px; padding-bottom: 64px; }
+
+    section + section { margin-top: 72px; }
 
     h2 {
       font-size: 1.5rem;
+      color: var(--blue-900);
       margin-bottom: 24px;
     }
 
@@ -91,7 +98,7 @@
     }
 
     .card {
-      background: var(--surface);
+      background: var(--white);
       border: 1px solid var(--border);
       border-radius: 14px;
       padding: 24px;
@@ -103,13 +110,16 @@
 
     .card:hover {
       transform: translateY(-4px);
-      border-color: var(--accent);
-      box-shadow: 0 12px 32px rgba(124, 92, 255, 0.15);
+      border-color: var(--blue-500);
+      box-shadow: 0 12px 32px rgba(29, 78, 216, 0.15);
     }
 
     .card-icon { font-size: 1.75rem; }
 
-    .card h3 { font-size: 1.15rem; }
+    .card h3 {
+      font-size: 1.15rem;
+      color: var(--blue-900);
+    }
 
     .card p {
       color: var(--muted);
@@ -127,44 +137,166 @@
       font-size: 0.75rem;
       padding: 4px 10px;
       border-radius: 999px;
-      background: rgba(124, 92, 255, 0.12);
-      color: #b8a6ff;
-      border: 1px solid rgba(124, 92, 255, 0.3);
+      background: var(--blue-100);
+      color: var(--blue-700);
     }
 
     .card a {
-      color: var(--accent-2);
+      color: var(--blue-700);
       text-decoration: none;
-      font-weight: 500;
+      font-weight: 600;
       font-size: 0.9rem;
     }
 
     .card a:hover { text-decoration: underline; }
 
-    footer {
-      margin-top: 80px;
-      text-align: center;
+    /* Formulaire de contact */
+    .contact {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 32px;
+      max-width: 640px;
+    }
+
+    .contact > p:first-child {
       color: var(--muted);
+      margin-bottom: 24px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+
+    label {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--blue-900);
+    }
+
+    input, textarea {
+      font: inherit;
+      font-size: 1rem; /* 16px minimum : évite le zoom automatique sur iPhone */
+      padding: 12px 14px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: var(--blue-50);
+      color: var(--text);
+      width: 100%;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: var(--blue-500);
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
+      background: var(--white);
+    }
+
+    textarea {
+      min-height: 140px;
+      resize: vertical;
+    }
+
+    button {
+      font: inherit;
+      font-weight: 600;
+      color: var(--white);
+      background: var(--blue-700);
+      border: none;
+      border-radius: 10px;
+      padding: 12px 28px;
+      cursor: pointer;
+      transition: background 0.2s ease, transform 0.1s ease;
+    }
+
+    button:hover { background: var(--blue-900); }
+    button:active { transform: scale(0.98); }
+
+    .form-status {
+      margin-top: 16px;
+      font-size: 0.95rem;
+      color: var(--blue-700);
+      min-height: 1.5em;
+    }
+
+    footer {
+      background: var(--blue-900);
+      color: var(--blue-100);
+      text-align: center;
       font-size: 0.85rem;
+      padding: 24px 16px;
+    }
+
+    /* Téléphones */
+    @media (max-width: 600px) {
+      .hero { padding: 48px 0 40px; }
+
+      header {
+        flex-direction: column;
+        text-align: center;
+        gap: 16px;
+      }
+
+      .avatar {
+        width: 80px;
+        height: 80px;
+        font-size: 2rem;
+      }
+
+      .bio {
+        font-size: 1rem;
+        text-align: center;
+      }
+
+      main.container { padding-top: 40px; padding-bottom: 40px; }
+
+      section + section { margin-top: 48px; }
+
+      .projects { grid-template-columns: 1fr; }
+
+      .card:hover { transform: none; }
+
+      .contact { padding: 20px; }
+
+      .form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+
+      button { width: 100%; }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <div class="avatar">A</div>
-      <div>
-        <h1>Alex</h1>
-        <p class="role">Développeur web &amp; passionné de cybersécurité</p>
-      </div>
-    </header>
+  <div class="hero">
+    <div class="container">
+      <header>
+        <div class="avatar">A</div>
+        <div>
+          <h1>Alex</h1>
+          <p class="role">Développeur web &amp; passionné de cybersécurité</p>
+        </div>
+      </header>
 
-    <p class="bio">
-      Bonjour ! Je m'appelle <strong>Alex</strong>. Je conçois des applications web
-      rapides, accessibles et sécurisées. J'aime transformer des idées en produits
-      concrets et j'apprends en permanence de nouvelles technologies.
-    </p>
+      <p class="bio">
+        Bonjour ! Je m'appelle <strong>Alex</strong>. Je conçois des applications web
+        rapides, accessibles et sécurisées. J'aime transformer des idées en produits
+        concrets et j'apprends en permanence de nouvelles technologies.
+      </p>
+    </div>
+  </div>
 
+  <main class="container">
     <section>
       <h2>Mes projets</h2>
       <div class="projects">
@@ -203,7 +335,60 @@
       </div>
     </section>
 
-    <footer>© 2026 Alex — Fait avec ❤️ et du CSS</footer>
-  </div>
+    <section id="contact">
+      <h2>Me contacter</h2>
+      <form class="contact" id="contact-form">
+        <p>Un projet, une question ? Écrivez-moi, je réponds rapidement.</p>
+
+        <div class="form-row">
+          <div class="field">
+            <label for="name">Nom</label>
+            <input type="text" id="name" name="name" autocomplete="name" required>
+          </div>
+          <div class="field">
+            <label for="email">E-mail</label>
+            <input type="email" id="email" name="email" autocomplete="email" required>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="subject">Sujet</label>
+          <input type="text" id="subject" name="subject" required>
+        </div>
+
+        <div class="field">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" required></textarea>
+        </div>
+
+        <button type="submit">Envoyer</button>
+        <p class="form-status" id="form-status" role="status"></p>
+      </form>
+    </section>
+  </main>
+
+  <footer>© 2026 Alex — Fait avec ❤️ et du CSS</footer>
+
+  <script>
+    // Le site est statique (GitHub Pages) : le formulaire ouvre la messagerie du visiteur.
+    const CONTACT_EMAIL = "alex@example.com";
+
+    document.getElementById("contact-form").addEventListener("submit", (event) => {
+      event.preventDefault();
+      const form = event.target;
+      const name = form.name.value.trim();
+      const email = form.email.value.trim();
+      const subject = form.subject.value.trim();
+      const message = form.message.value.trim();
+
+      const body = `${message}\n\n— ${name} (${email})`;
+      window.location.href =
+        `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+      document.getElementById("form-status").textContent =
+        "Merci ! Votre messagerie va s'ouvrir pour envoyer le message.";
+      form.reset();
+    });
+  </script>
 </body>
 </html>
