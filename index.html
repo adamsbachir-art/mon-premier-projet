@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alex — Portfolio</title>
+  <style>
+    :root {
+      --bg: #0d1117;
+      --surface: #161b22;
+      --border: #30363d;
+      --text: #e6edf3;
+      --muted: #8b949e;
+      --accent: #7c5cff;
+      --accent-2: #22d3ee;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 64px 16px;
+    }
+
+    /* En-tête */
+    header {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      margin-bottom: 64px;
+      flex-wrap: wrap;
+    }
+
+    .avatar {
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      display: grid;
+      place-items: center;
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #fff;
+      flex-shrink: 0;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 6vw, 3rem);
+      line-height: 1.1;
+      background: linear-gradient(90deg, var(--text), var(--accent-2));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .role {
+      color: var(--accent-2);
+      font-weight: 500;
+      margin-top: 4px;
+    }
+
+    /* Bio */
+    .bio {
+      font-size: 1.1rem;
+      color: var(--muted);
+      max-width: 640px;
+      margin-bottom: 64px;
+    }
+
+    .bio strong { color: var(--text); }
+
+    h2 {
+      font-size: 1.5rem;
+      margin-bottom: 24px;
+    }
+
+    /* Fiches projet */
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent);
+      box-shadow: 0 12px 32px rgba(124, 92, 255, 0.15);
+    }
+
+    .card-icon { font-size: 1.75rem; }
+
+    .card h3 { font-size: 1.15rem; }
+
+    .card p {
+      color: var(--muted);
+      font-size: 0.95rem;
+      flex-grow: 1;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tag {
+      font-size: 0.75rem;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(124, 92, 255, 0.12);
+      color: #b8a6ff;
+      border: 1px solid rgba(124, 92, 255, 0.3);
+    }
+
+    .card a {
+      color: var(--accent-2);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.9rem;
+    }
+
+    .card a:hover { text-decoration: underline; }
+
+    footer {
+      margin-top: 80px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="avatar">A</div>
+      <div>
+        <h1>Alex</h1>
+        <p class="role">Développeur web &amp; passionné de cybersécurité</p>
+      </div>
+    </header>
+
+    <p class="bio">
+      Bonjour ! Je m'appelle <strong>Alex</strong>. Je conçois des applications web
+      rapides, accessibles et sécurisées. J'aime transformer des idées en produits
+      concrets et j'apprends en permanence de nouvelles technologies.
+    </p>
+
+    <section>
+      <h2>Mes projets</h2>
+      <div class="projects">
+        <article class="card">
+          <div class="card-icon">🛡️</div>
+          <h3>Scanner de vulnérabilités</h3>
+          <p>Outil en ligne de commande qui analyse un site web et signale les en-têtes de sécurité manquants.</p>
+          <div class="tags">
+            <span class="tag">Python</span>
+            <span class="tag">Sécurité</span>
+          </div>
+          <a href="#">Voir le projet →</a>
+        </article>
+
+        <article class="card">
+          <div class="card-icon">📊</div>
+          <h3>Tableau de bord météo</h3>
+          <p>Application qui affiche les prévisions en temps réel avec des graphiques interactifs.</p>
+          <div class="tags">
+            <span class="tag">JavaScript</span>
+            <span class="tag">API</span>
+          </div>
+          <a href="#">Voir le projet →</a>
+        </article>
+
+        <article class="card">
+          <div class="card-icon">✅</div>
+          <h3>Gestionnaire de tâches</h3>
+          <p>Application de liste de tâches minimaliste avec glisser-déposer et sauvegarde locale.</p>
+          <div class="tags">
+            <span class="tag">HTML</span>
+            <span class="tag">CSS</span>
+          </div>
+          <a href="#">Voir le projet →</a>
+        </article>
+      </div>
+    </section>
+
+    <footer>© 2026 Alex — Fait avec ❤️ et du CSS</footer>
+  </div>
+</body>
+</html>
